@@ -24,8 +24,8 @@ class IcsService
 
       $e->setProperty( 'summary', $event->getName() );    // describe the event
       $e->setProperty( 'location', $event->getLocation() );
-      $e->setProperty( 'dtstart', $event->getStartTime()->format("Ymd\THis ") . $event->getStartTime()->getOffset() );
-      $e->setProperty( 'dtend', $event->getEndTime()->format("Ymd\THis ") . $event->getEndTime()->getOffset());
+      $e->setProperty( 'dtstart', $event->getStartTime()->format("Ymd\THis ") . $event->getStartTime()->getTimezone()->getName() );
+      $e->setProperty( 'dtend', $event->getEndTime()->format("Ymd\THis ") . $event->getEndTime()->getTimezone()->getName() );
 
       foreach($event->getAlarms() as $alarm)
       {
