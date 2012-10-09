@@ -21,5 +21,5 @@
 			"Striide\\CalendarBundle": ""
 		}
 	},
-	"target-dir": "Striide/StriideCalendarBundle"
+	"target-dir": "StriideCalendarBundle"
 }
