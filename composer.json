@@ -18,7 +18,7 @@
 	"minimum-stability": "dev",
 	"autoload": {
 		"psr-0": {
-			"Striide": ""
+			"Striide\\CalendarBundle": ""
 		}
 	},
 	"target-dir": "Striide/StriideCalendarBundle"
