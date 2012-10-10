@@ -37,4 +37,37 @@ class IcsService
     }
     return $v;
   }
+
+  public function calendarToIcs(Calendar $c)
+  {
+    // 1. Create new calendar
+    $vCalendar = new \Striide\CalendarBundle\Bridge\Calendar($c->getGuid());
+
+
+    $vCalendar->setName($c->getName());
+    $vCalendar->setDescription($c->getDescription());
+    $vCalendar->setTimezone($c->getTimezone());
+    $vCalendar->buildPropertyBag();
+
+    //\Eluceo\iCal\Component\Calendar($c->getGuid());
+
+    // 2. Create an event
+    // check if daylight or standard time....
+    foreach($c->getEvents() as $event)
+    {
+      $vEvent = new \Eluceo\iCal\Component\Event();
+      $vEvent->setDtStart($event->getStartTime());
+      $vEvent->setDtEnd($event->getEndTime());
+      //$vEvent->setNoTime(true);
+      $vEvent->setSummary($event->getName());
+      $vEvent->setLocation($event->getLocation());
+
+      // Adding Timezone (optional)
+      $vEvent->setUseTimezone(true);
+
+      // 3. Add event to calendar
+      $vCalendar->addEvent($vEvent);
+    }
+    return $vCalendar;
+  }
 }
