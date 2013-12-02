@@ -67,6 +67,11 @@ class IcsService
       //$vEvent->setNoTime(true);
       $vEvent->setSummary($event->getName());
       $vEvent->setLocation($event->getLocation());
+      
+      if($event->hasDescription() )
+      {
+        $vEvent->setDescription( $event->getDescription() );
+      }
 
       // Adding Timezone (optional)
       $vEvent->setUseTimezone(true);
