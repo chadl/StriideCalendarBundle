@@ -23,6 +23,12 @@ class IcsService
       $e = & $v->newComponent( 'vevent' );
 
       $e->setProperty( 'summary', $event->getName() );    // describe the event
+      
+      if($event->hasDescription() )
+      {
+        $e->setProperty( 'comment', $event->getDescription() );
+      }
+      
       $e->setProperty( 'location', $event->getLocation() );
       $e->setProperty( 'dtstart', $event->getStartTime()->format("Ymd\THis ") . $event->getStartTime()->getTimezone()->getName() );
       $e->setProperty( 'dtend', $event->getEndTime()->format("Ymd\THis ") . $event->getEndTime()->getTimezone()->getName() );
