@@ -21,6 +21,18 @@ class Event
   public function setDescription($d)
   {
     $this->description = $d;
+    return $this;
+  }
+  /**
+   * @return book
+   */
+  public function hasDescription()
+  {
+    if(empty($this->description))
+    {
+      return false;
+    }
+    return true;
   }
 
   protected $location = "";
@@ -31,6 +43,7 @@ class Event
   public function setLocation($l)
   {
     $this->location = $l;
+    return $this;
   }
 
   /**
@@ -44,6 +57,7 @@ class Event
   public function setStarttime(\DateTime $s)
   {
     $this->starttime = $s;
+    return $this;
   }
 
   /**
@@ -57,6 +71,7 @@ class Event
   public function setEndtime(\DateTime $s)
   {
     $this->endtime = $s;
+    return $this;
   }
 
   /**
@@ -65,6 +80,7 @@ class Event
   protected $timezone = null;
   public function getTimezone()
   {
+    // in the event we need to return a default
     if(is_null($this->timezone))
     {
       $this->timezone = new \DateTimeZone('US/Pacific');
@@ -83,6 +99,7 @@ class Event
   public function setDuration($d)
   {
     $this->duration = $d;
+    return $this;
   }
 
   /**
@@ -92,6 +109,7 @@ class Event
   public function addAlarm(Alarm $a)
   {
     $this->alarms[] = $a;
+    return $this;
   }
   public function getAlarms()
   {
