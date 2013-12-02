@@ -8,9 +8,14 @@ class Event
   {
     return $this->name;
   }
+  
+  /**
+   * @return Event
+   */
   public function setName($n)
   {
     $this->name = $n;
+    return $this;
   }
   
   protected $description = "";
@@ -18,6 +23,9 @@ class Event
   {
     return $this->description;
   }
+  /**
+   * @return Event
+   */
   public function setDescription($d)
   {
     $this->description = $d;
@@ -40,6 +48,10 @@ class Event
   {
     return $this->location;
   }
+  
+  /**
+   * @return Event
+   */
   public function setLocation($l)
   {
     $this->location = $l;
@@ -54,6 +66,10 @@ class Event
   {
     return $this->starttime;
   }
+  
+  /**
+   * @return Event
+   */
   public function setStarttime(\DateTime $s)
   {
     $this->starttime = $s;
@@ -68,6 +84,10 @@ class Event
   {
     return $this->endtime;
   }
+  
+  /**
+   * @return Event
+   */
   public function setEndtime(\DateTime $s)
   {
     $this->endtime = $s;
@@ -95,6 +115,7 @@ class Event
 
   /**
    * @param string $d 3h 3.5h etc
+   * @return Event
    */
   public function setDuration($d)
   {
@@ -104,6 +125,7 @@ class Event
 
   /**
    * @var array(Alarm)
+   * @return Event
    */
   protected $alarms = array();
   public function addAlarm(Alarm $a)
