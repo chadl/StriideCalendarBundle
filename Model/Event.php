@@ -12,6 +12,16 @@ class Event
   {
     $this->name = $n;
   }
+  
+  protected $description = "";
+  public function getDescription()
+  {
+    return $this->description;
+  }
+  public function setDescription($d)
+  {
+    $this->description = $d;
+  }
 
   protected $location = "";
   public function getLocation()
