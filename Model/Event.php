@@ -32,11 +32,62 @@ class Event
     return $this;
   }
   /**
-   * @return book
+   * @return bool
    */
   public function hasDescription()
   {
     if(empty($this->description))
+    {
+      return false;
+    }
+    return true;
+  }
+  
+  protected $custom_description;
+  public function getCustomDescription()
+  {
+    return $this->custom_description;
+  }
+  /**
+   * @return Event
+   */
+  public function setCustomDescription($description,$id)
+  {
+    $this->setDescription($description);
+    $this->custom_description = $id;
+    return $this;
+  }
+  /**
+   * @return bool
+   */
+  public function hasCustomDescription()
+  {
+    if(empty($this->custom_description))
+    {
+      return false;
+    }
+    return true;
+  }
+  
+  protected $url = "";
+  public function getUrl()
+  {
+    return $this->url;
+  }
+  /**
+   * @return Event
+   */
+  public function setUrl($u)
+  {
+    $this->url = $u;
+    return $this;
+  }
+  /**
+   * @return bool
+   */
+  public function hasUrl()
+  {
+    if(empty($this->url))
     {
       return false;
     }

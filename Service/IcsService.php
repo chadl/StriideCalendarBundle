@@ -54,14 +54,21 @@ class IcsService
     $vCalendar->setDescription($c->getDescription());
     $vCalendar->setTimezone($c->getTimezone());
     $vCalendar->buildPropertyBag();
-
-    //\Eluceo\iCal\Component\Calendar($c->getGuid());
-
+    
+    $parts = $c->getParts();
+    if(!empty($parts))
+    {
+      foreach($parts as $id => $part)
+      {
+        $vCalendar->addPart($id, $part['type'], $part['content']);
+      }
+    }
+    
     // 2. Create an event
     // check if daylight or standard time....
     foreach($c->getEvents() as $event)
     {
-      $vEvent = new \Eluceo\iCal\Component\Event();
+      $vEvent = new \Striide\CalendarBundle\Bridge\Event();
       $vEvent->setDtStart($event->getStartTime());
       $vEvent->setDtEnd($event->getEndTime());
       //$vEvent->setNoTime(true);
@@ -70,7 +77,19 @@ class IcsService
       
       if($event->hasDescription() )
       {
-        $vEvent->setDescription( $event->getDescription() );
+        if($event->hasCustomDescription())
+        {
+          $vEvent->setCustomDescription( $event->getCustomDescription(), $event->getDescription() );
+        }
+        else
+        {
+          $vEvent->setDescription( $event->getDescription() ); 
+        }
+      }
+      
+      if($event->hasUrl() )
+      {
+        $vEvent->setUrl( $event->getUrl() );
       }
 
       // Adding Timezone (optional)

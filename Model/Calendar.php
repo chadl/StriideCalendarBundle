@@ -55,7 +55,7 @@ class Calendar
   {
     $this->description = $d;
   }
-
+  
   /**
    * array(Event)
    */
@@ -67,5 +67,16 @@ class Calendar
   public function getEvents()
   {
     return $this->events;
+  }
+  
+   
+  protected $parts = array();
+  public function addPart($id,$type,$content)
+  {
+    $this->parts[$id] = array('type' => $type, 'content' => $content);
+  }
+  public function getParts()
+  {
+    return $this->parts;
   }
 }

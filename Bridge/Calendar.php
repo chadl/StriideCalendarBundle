@@ -26,5 +26,29 @@ class Calendar extends \Eluceo\iCal\Component\Calendar
     $this->properties->set("X-WR-CALDESC",$this->description);
     $this->properties->set("X-WR-TIMEZONE", $this->tz->getName() );
   }
+  
+  protected $parts = array();
+  public function addPart($id,$type,$content)
+  {
+    $this->parts[$id] = array('type' => $type, 'content' => $content);
+  }
+  
+  public function build()
+  {
+    $lines =  parent::build();
+    
+    if(!empty($this->parts))
+    {
+      foreach($this->parts as $id => $part)
+      {
+        $lines[] = "";
+        $lines[] = "Content-Type:" . $part['type'];
+        $lines[] = "Content-Id:" . $id;
+        $lines[] = "";
+        $lines[] = $part['content'];    
+      }
+    }
+    return $lines;
+  }
 
 }
